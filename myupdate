@@ -32,6 +32,6 @@ checkconfigname="git config --get user.name"
 eval $checkconfigname
 
 
-
-
+#Sets my vimrc file to $HOME dic
+curl -L 
 
