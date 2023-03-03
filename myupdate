@@ -31,9 +31,7 @@ fi
 checkconfigname="git config --get user.name"
 eval $checkconfigname
 
-
-#Sets my vimrc file to $HOME dic
-# Downloads using curl and throws the contents into a vimrc file
+# sets my vimrtc file to HOME dic
 curl -L https://raw.githubusercontent.com/chrislo95/-scripts/main/vimrcprofile > /home/$USER/.vimrc
 
 
