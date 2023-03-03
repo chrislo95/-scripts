@@ -10,14 +10,28 @@ myemail="92557089+chrislo95@users.noreply.github.com"
 mygitconfigemail="git config --global user.email $myemail"
 eval $mygitconfigemail
 checkconfigemail="git config --get user.email"
+if [[ $(eval $checkconfigemail) == $myemail ]]
+then
+    echo "Email is correct. Current email is $myemail"
+else
+    echo "Email is not correct check current email var"   
+fi 
 eval $checkconfigemail
 
-mygitconfigname="$USER"
+mygitname="$USER"
 
 mygitconfigname="git config --global user.name $mygitconfigname"
 eval $mygitconfigname
+if [[ $(eval $mygitconfigname) == $mygitname ]]
+then
+    echo "Name is correct. Current User is $mygitname"
+else
+    echo "Name is not correct. Please check current user"
+fi
 checkconfigname="git config --get user.name"
 eval $checkconfigname
+
+
 
 
 
