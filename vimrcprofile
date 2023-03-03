@@ -1,4 +1,14 @@
-set number
-syntax on 
+call plug#begin()
+    Plug 'preservim/nerdtree'
+    Plug 'airblade/vim-gitgutter'
 
-set autoindent expandtab tabstop=4 shiftwidth=4 
+call plug#end()
+
+set number
+set autoindent expandtab tabstop=4 shiftwidth=4
+
+" Shorcuts for NERDTree.
+nnoremap <leader>l :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
