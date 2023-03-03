@@ -33,5 +33,8 @@ eval $checkconfigname
 
 
 #Sets my vimrc file to $HOME dic
-curl -L 
+# Downloads using curl and throws the contents into a vimrc file
+curl -L https://raw.githubusercontent.com/chrislo95/-scripts/main/vimrcprofile > /home/$USER/.vimrc
+
+
 
