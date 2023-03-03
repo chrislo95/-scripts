@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+#for i in {0..100}
+#do
+#   check=$(expr $i % 2)
+#   if [ $check = 0 ]
+#   then
+#       echo $i
+#   fi
+#done
+
+startrange=1
+endrange=100 
+
+for (( x=$startrange; x <=$endrange; x++ ))
+do
+   if (( x % 2 == 0 ))
+   then	   
+       echo $x
+   fi
+done   
+
+
+

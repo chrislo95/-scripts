@@ -1,0 +1,23 @@
+#!/bin/bash
+
+myupdateline="sudo apt update && sudo apt dist-upgrade -y"
+installmypackages="sudo apt install git curl wget zsh nmap"
+
+
+# git config
+myemail="92557089+chrislo95@users.noreply.github.com"
+
+mygitconfigemail="git config --global user.email $myemail"
+eval $mygitconfigemail
+checkconfigemail="git config --get user.email"
+eval $checkconfigemail
+
+mygitconfigname="$USER"
+
+mygitconfigname="git config --global user.name $mygitconfigname"
+eval $mygitconfigname
+checkconfigname="git config --get user.name"
+eval $checkconfigname
+
+
+
