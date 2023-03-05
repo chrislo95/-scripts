@@ -1,0 +1,96 @@
+#!/bin/bash
+
+myupdateline="sudo apt update && sudo apt dist-upgrade -y"
+eval $myupdateline
+installmypackages="sudo apt install git curl wget zsh nmap"
+eval $installmypackages
+
+# git config
+myemail="92557089+chrislo95@users.noreply.github.com"
+
+mygitconfigemail="git config --global user.email $myemail"
+eval $mygitconfigemail
+checkconfigemail="git config --get user.email"
+if [[ $(eval $checkconfigemail) == $myemail ]]
+then
+    echo "Email is correct. Current email is $myemail"
+else
+    echo "Email is not correct check current email var"   
+fi 
+eval $checkconfigemail
+
+mygitname="$USER"
+
+mygitconfigname="git config --global user.name $mygitname"
+eval $mygitconfigname
+checkconfigname="git config --get user.name"
+eval $checkconfigname
+
+if [[ $(eval $checkconfigname) == $mygitname ]]
+then
+    echo "Name is correct. Current User is $mygitname"
+else
+    echo "Name is not correct. Please check current user"
+fi
+
+##                          ##
+## Finishing the git set up ##
+##                          ##
+
+ls ~/.ssh/id_ed25519.pub
+if [ $? == 0 ] 
+then
+    echo "Key already there"
+    cat ~/.ssh/id_ed25519.pub
+    sleep 0.5
+else
+    echo "Key not found. Okay to proceed"
+    sleep 0.5
+    ssh-keygen -t ed25519 -C $myemail
+    echo "Key below"
+    cat ~/.ssh/id_ed25519.pub
+fi
+
+if [-f /home/$USER/.vimrc ]
+then
+    exit 0
+else
+    "Vimrc not found. Okay to proceed"
+fi
+
+# Adds Plug.vim manager
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Sets my vimrc file to HOME dic
+curl -L https://raw.githubusercontent.com/chrislo95/-scripts/main/vimrcprofile > /home/$USER/.vimrc
+
+#
+# ZSH setup 
+#
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install zsh plug-ins
+# zsh-autosuggestion plug in
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+sleep 0.3
+
+# zsh-highlighting plugin
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+sleep 0.3
+
+# fzf install
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+sleep 0.3
+
+
+# sets the zshr with the new plugins
+mylinenumber=$(sed -n '/plugins=(git/=' /home/$USER/.zshrc)
+
+sed -i '73 s/plugins=(git/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf)/plugins=(git/' /home/$USER/.zshrc
+
