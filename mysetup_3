@@ -71,6 +71,11 @@ curl -L https://raw.githubusercontent.com/chrislo95/-scripts/main/vimrcprofile >
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+if [ -f /home/$USER/.oh-my-zsh ]
+then
+    echo "ZSH already installed"
+    exit 0
+
 # Install zsh plug-ins
 # zsh-autosuggestion plug in
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
