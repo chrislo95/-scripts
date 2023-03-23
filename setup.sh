@@ -47,6 +47,9 @@ fi
 # Check for the file again 
 cat ~/.ssh/id_ed25519.pub
 
+echo "Test here"
+
+
 # check if nmap is already installed
 if [ -f /usr/bin/nmap ]
 then
